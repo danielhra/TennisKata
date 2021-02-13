@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TennisGameTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2021-02-13T21:49:52" hostname="macbook-de-Daniel.local" time="0.069">
+  <properties/>
+  <testcase name="shouldCallAdvantageInOnServerPointWhenInDeuce()" classname="TennisGameTest" time="0.049"/>
+  <testcase name="shouldAddPointsIfBothScore()" classname="TennisGameTest" time="0.009"/>
+  <testcase name="shouldCallWinnerOnServerIfScoreIsFourAndTwoPointsAheadOfReceiver()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldStartGameWithZeroPoints()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldAddPointOnLeftIfServerScores()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldAddThreePoints()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldCallAdvantageOutOnReceiverPointWhenInDeuce()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldCallWinnerOnReceiverIfScoreIsFourAndTwoPointsAheadOfServer()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldAddPointOnRightIfReceiverScores()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldCallDeuceIfBothPlayersHaveThreePoints()" classname="TennisGameTest" time="0.001"/>
+  <testcase name="shouldAddTwoPoints()" classname="TennisGameTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
