@@ -2,67 +2,39 @@ public class TennisGame {
 
     private final int serverScore;
     private final int receiverScore;
+    private  GameState state;
 
     private TennisGame(int serverScore, int receiverScore) {
         this.serverScore = serverScore;
         this.receiverScore = receiverScore;
+        this.state = new SimpleGameState();
     }
 
-    public static TennisGame of(int serverScore, int receiverScore) {
-        return new TennisGame(serverScore, receiverScore);
+    public TennisGame() {
+        this.serverScore = 0;
+        this.receiverScore = 0;
+        this.state = new SimpleGameState();
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
     }
 
     public String evaluateScore() {
-        if (thereIsAWinner()) {
-            return "winner " + getScorerWithMorePoints();
-        }
-        if (isDeuce()) {
-            return "deuce";
-        }
-        if (anyPlayerScoredAfterDeuce()) {
-            return "advantage " + getScorerWithMorePoints();
-        }
-        return scoreRepresentation(serverScore) + " - " + scoreRepresentation(receiverScore);
-    }
-
-    private boolean thereIsAWinner() {
-        return (serverScore >= 4 && serverScore >= receiverScore + 2) ||
-                (receiverScore >= 4 && receiverScore >= serverScore + 2);
-    }
-
-    private String getScorerWithMorePoints() {
-        return serverScore > receiverScore ? "in" : "out";
-    }
-
-    private boolean anyPlayerScoredAfterDeuce() {
-        return serverScore > 3 || receiverScore > 3;
-    }
-
-    private boolean isDeuce() {
-        return serverScore == 3 && receiverScore == 3;
-    }
-
-    private String scoreRepresentation(int score) {
-        switch (score) {
-            case 0:
-                return "love";
-            case 1:
-                return "fifteen";
-            case 2:
-                return "thirty";
-            case 3:
-                return "forty";
-            default:
-                throw new IllegalStateException();
-        }
+        return state.formatScore(this);
     }
 
     public TennisGame serverScored() {
-        return new TennisGame(serverScore + 1, receiverScore);
+        TennisGame updatedGame = new TennisGame(serverScore + 1, receiverScore);
+        state.serverScores(updatedGame);
+        return updatedGame;
     }
 
+
     public TennisGame receiverScored() {
-        return new TennisGame(serverScore, receiverScore + 1);
+        TennisGame updatedGame = new TennisGame(serverScore, receiverScore + 1);
+        state.receiverScores(updatedGame);
+        return updatedGame;
     }
 
     public int getServerScore() {
@@ -71,5 +43,9 @@ public class TennisGame {
 
     public int getReceiverScore() {
         return receiverScore;
+    }
+
+    public GameState getState() {
+        return state;
     }
 }

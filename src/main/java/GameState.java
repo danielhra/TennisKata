@@ -1,5 +1,5 @@
 public interface GameState {
-    GameState serverScores();
-    GameState receiverScores();
-    String formatScore();
+    void serverScores(TennisGame tennisGame);
+    void receiverScores(TennisGame tennisGame);
+    String formatScore(TennisGame tennisGame);
 }

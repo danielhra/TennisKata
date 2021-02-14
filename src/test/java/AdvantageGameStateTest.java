@@ -1,51 +1,55 @@
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AdvantageGameStateTest {
 
-    private AdvantageGameState sut;
+    private final AdvantageGameState sut = new AdvantageGameState();
+    ;
 
     @Test
     void shouldChangeStateToDeuceIfServerWasAheadAndReceiverScored() {
-        sut = new AdvantageGameState(TennisGame.of(4, 3));
-        assertThat(sut.receiverScores()).isInstanceOf(DeuceGameState.class);
-        assertThat(sut.receiverScores().formatScore()).isEqualTo("deuce");
+
+        TennisGame tennisGame = TennisGameTest.instantiateGame(4, 4);
+        sut.receiverScores(tennisGame);
+
+        assertThat(tennisGame.getState()).isInstanceOf(DeuceGameState.class);
     }
 
     @Test
     void shouldChangeStateToDeuceIfReceiverWasAheadAndServerScored() {
-        sut = new AdvantageGameState(TennisGame.of(3, 4));
-        assertThat(sut.serverScores()).isInstanceOf(DeuceGameState.class);
-        assertThat(sut.serverScores().formatScore()).isEqualTo("deuce");
+        TennisGame tennisGame = TennisGameTest.instantiateGame(4, 4);
+        sut.serverScores(tennisGame);
+
+        assertThat(tennisGame.getState()).isInstanceOf(DeuceGameState.class);
     }
 
 
     @Test
     void shouldChangeStateToWinnerIfReceiverWasAheadAndReceiverScored() {
-        sut = new AdvantageGameState(TennisGame.of(3, 4));
-        assertThat(sut.receiverScores()).isInstanceOf(WinnerGameState.class);
-        assertThat(sut.receiverScores().formatScore()).isEqualTo("winner out");
+        TennisGame tennisGame = TennisGameTest.instantiateGame(3, 5);
+        sut.receiverScores(tennisGame);
+
+        assertThat(tennisGame.getState()).isInstanceOf(WinnerGameState.class);
     }
 
     @Test
     void shouldChangeStateToWinnerIfServerWasAheadAndServerScored() {
-        sut = new AdvantageGameState(TennisGame.of(4, 3));
-        assertThat(sut.serverScores()).isInstanceOf(WinnerGameState.class);
-        assertThat(sut.serverScores().formatScore()).isEqualTo("winner in");
+        TennisGame tennisGame = TennisGameTest.instantiateGame(5, 3);
+        sut.serverScores(tennisGame);
+        assertThat(tennisGame.getState()).isInstanceOf(WinnerGameState.class);
     }
 
 
     @Test
     void shouldFormatTextToAdvantageInWhenServerIsAhead() {
-        sut = new AdvantageGameState(TennisGame.of(4, 3));
-        assertThat(sut.formatScore()).isEqualTo("advantage in");
+        TennisGame tennisGame = TennisGameTest.instantiateGame(4, 3);
+        assertThat(sut.formatScore(tennisGame)).isEqualTo("advantage in");
     }
 
     @Test
     void shouldFormatTextToAdvantageOutWhenReceiverIsAhead() {
-        sut = new AdvantageGameState(TennisGame.of(5, 6));
-        assertThat(sut.formatScore()).isEqualTo("advantage out");
+        TennisGame tennisGame = TennisGameTest.instantiateGame(5, 6);
+        assertThat(sut.formatScore(tennisGame)).isEqualTo("advantage out");
     }
 }

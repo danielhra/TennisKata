@@ -9,27 +9,26 @@ class WinnerGameStateTest {
 
     @Test()
     void shouldThrowExceptionIfServerTriesToScore() {
-        sut = new WinnerGameState(TennisGame.of(4, 0));
-        Assertions.assertThrows(IllegalStateException.class, () -> sut.serverScores());
+        sut = new WinnerGameState();
+        Assertions.assertThrows(IllegalStateException.class, () -> sut.serverScores(null));
     }
 
     @Test()
     void shouldThrowExceptionIfReceiverTriesToScore() {
-        sut = new WinnerGameState(TennisGame.of(4, 0));
-        Assertions.assertThrows(IllegalStateException.class, () -> sut.receiverScores());
+        sut = new WinnerGameState();
+        Assertions.assertThrows(IllegalStateException.class, () -> sut.receiverScores(null));
     }
 
     @Test
     void shouldShowServerWon() {
-        sut = new WinnerGameState(TennisGame.of(4, 0));
-
-        assertThat(sut.formatScore()).isEqualTo("winner in");
+        sut = new WinnerGameState();
+        assertThat(sut.formatScore(TennisGameTest.instantiateGame(4, 0))).isEqualTo("winner in");
     }
 
     @Test
     void shouldShowReceiverWon() {
-        sut = new WinnerGameState(TennisGame.of(0, 4));
+        sut = new WinnerGameState();
 
-        assertThat(sut.formatScore()).isEqualTo("winner out");
+        assertThat(sut.formatScore(TennisGameTest.instantiateGame(0, 4))).isEqualTo("winner out");
     }
 }

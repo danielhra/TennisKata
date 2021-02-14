@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SimpleGameStateTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2021-02-14T14:37:50" hostname="macbook-de-Daniel.local" time="0.082">
+<testsuite name="SimpleGameStateTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2021-02-14T18:53:15" hostname="macbook-de-Daniel.local" time="0.084">
   <properties/>
   <testcase name="shouldAddPointsIfBothScore()" classname="SimpleGameStateTest" time="0.009"/>
-  <testcase name="shouldChangeStateToDeuceOnReceiverScore()" classname="SimpleGameStateTest" time="0.001"/>
+  <testcase name="shouldChangeStateToDeuceOnReceiverScore()" classname="SimpleGameStateTest" time="0.0"/>
   <testcase name="shouldStartGameWithZeroPoints()" classname="SimpleGameStateTest" time="0.001"/>
-  <testcase name="shouldChangeStateToDeuceOnServerScore()" classname="SimpleGameStateTest" time="0.0"/>
-  <testcase name="shouldAddPointOnLeftIfServerScores()" classname="SimpleGameStateTest" time="0.001"/>
-  <testcase name="shouldAddThreePoints()" classname="SimpleGameStateTest" time="0.001"/>
-  <testcase name="[1] 0, 0" classname="SimpleGameStateTest" time="0.017"/>
-  <testcase name="[2] 1, 1" classname="SimpleGameStateTest" time="0.001"/>
+  <testcase name="[1] 0, 0" classname="SimpleGameStateTest" time="0.016"/>
+  <testcase name="[2] 1, 1" classname="SimpleGameStateTest" time="0.0"/>
   <testcase name="[3] 2, 2" classname="SimpleGameStateTest" time="0.0"/>
+  <testcase name="shouldChangeStateToDeuceOnServerScore()" classname="SimpleGameStateTest" time="0.0"/>
+  <testcase name="shouldAddPointOnLeftIfServerScores()" classname="SimpleGameStateTest" time="0.0"/>
+  <testcase name="shouldAddThreePoints()" classname="SimpleGameStateTest" time="0.0"/>
   <testcase name="shouldAddPointOnRightIfReceiverScores()" classname="SimpleGameStateTest" time="0.001"/>
+  <testcase name="[1] 0, 0" classname="SimpleGameStateTest" time="0.001"/>
+  <testcase name="[2] 1, 1" classname="SimpleGameStateTest" time="0.0"/>
+  <testcase name="[3] 2, 2" classname="SimpleGameStateTest" time="0.001"/>
   <testcase name="shouldAddTwoPoints()" classname="SimpleGameStateTest" time="0.0"/>
   <testcase name="shouldChangeToWinStateOnServerWin()" classname="SimpleGameStateTest" time="0.0"/>
   <testcase name="shouldChangeToWinStateOnReceiverWin()" classname="SimpleGameStateTest" time="0.0"/>

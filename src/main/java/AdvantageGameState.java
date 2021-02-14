@@ -1,44 +1,38 @@
 public class AdvantageGameState implements GameState {
-    private final TennisGame tennisGame;
-
-    public AdvantageGameState(TennisGame tennisGame) {
-
-        this.tennisGame = tennisGame;
-    }
 
     @Override
-    public GameState serverScores() {
-        TennisGame updatedGame = tennisGame.serverScored();
-        if(serverWon(updatedGame)){
-            return new WinnerGameState(updatedGame);
+    public void serverScores(TennisGame tennisGame) {
+        if (serverWon(tennisGame)) {
+            tennisGame.setState(new WinnerGameState());
+        } else {
+            tennisGame.setState(new DeuceGameState());
         }
-        return new DeuceGameState(tennisGame);
     }
 
-    private boolean serverWon(TennisGame updatedGame) {
-        return updatedGame.getServerScore() == updatedGame.getReceiverScore() + 2;
+    private boolean serverWon(TennisGame tennisGame) {
+        return tennisGame.getServerScore() == tennisGame.getReceiverScore() + 2;
     }
 
     @Override
-    public GameState receiverScores() {
-        TennisGame updatedGame = tennisGame.receiverScored();
-        if (receiverWon(updatedGame)) {
-            return new WinnerGameState(updatedGame);
+    public void receiverScores(TennisGame tennisGame) {
+        if (receiverWon(tennisGame)) {
+            tennisGame.setState(new WinnerGameState());
+        } else {
+            tennisGame.setState(new DeuceGameState());
         }
 
-        return new DeuceGameState(tennisGame);
     }
 
-    private boolean receiverWon(TennisGame updatedGame) {
-        return updatedGame.getReceiverScore() == updatedGame.getServerScore() + 2;
+    private boolean receiverWon(TennisGame tennisGame) {
+        return tennisGame.getReceiverScore() == tennisGame.getServerScore() + 2;
     }
 
     @Override
-    public String formatScore() {
-        return "advantage " + (serverIsAhead() ? "in" : "out");
+    public String formatScore(TennisGame tennisGame) {
+        return "advantage " + (serverIsAhead(tennisGame) ? "in" : "out");
     }
 
-    private boolean serverIsAhead() {
+    private boolean serverIsAhead(TennisGame tennisGame) {
         return tennisGame.getServerScore() > tennisGame.getReceiverScore();
     }
 }

@@ -5,21 +5,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DeuceGameStateTest {
 
-    private DeuceGameState sut;
+    private DeuceGameState sut = new DeuceGameState();
 
     @ParameterizedTest
     @CsvSource({"3,3", "4,4", "5,5"})
-    void shouldMoveToAdvantageIfAnyScores(int serverScore, int receiverScore) {
-        sut = new DeuceGameState(TennisGame.of(serverScore, receiverScore));
-        assertThat(sut.serverScores()).isInstanceOf(AdvantageGameState.class);
-        assertThat(sut.receiverScores()).isInstanceOf(AdvantageGameState.class);
+    void shouldMoveToAdvantageIfServerScores(int serverScore, int receiverScore) {
+        TennisGame tennisGame = TennisGameTest.instantiateGame(serverScore, receiverScore);
+        sut.serverScores(tennisGame);
+
+        assertThat(tennisGame.getState()).isInstanceOf(AdvantageGameState.class);
+    }
+    @ParameterizedTest
+    @CsvSource({"3,3", "4,4", "5,5"})
+    void shouldMoveToAdvantageIfReceiverScores(int serverScore, int receiverScore) {
+        TennisGame tennisGame = TennisGameTest.instantiateGame(serverScore, receiverScore);
+        sut.receiverScores(tennisGame);
+
+        assertThat(tennisGame.getState()).isInstanceOf(AdvantageGameState.class);
     }
 
     @ParameterizedTest
     @CsvSource({"3,3", "4,4", "5,5"})
     void shouldGetDeuceAsScore(int serverScore, int receiverScore) {
-        sut = new DeuceGameState(TennisGame.of(serverScore, receiverScore));
-        assertThat(sut.formatScore()).isEqualTo("deuce");
-
+        sut = new DeuceGameState();
+        assertThat(sut.formatScore(TennisGameTest.instantiateGame(serverScore, receiverScore))).isEqualTo("deuce");
     }
 }

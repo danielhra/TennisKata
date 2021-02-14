@@ -3,74 +3,61 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TennisGameTest {
-
     @Test
-    void shouldStartGameWithZeroPoints() {
-        assertScore(TennisGame.of(0, 0), "love - love");
+    void serverWinsEffortlessly() {
+        var sut = new TennisGame();
+        assertThat(sut.evaluateScore()).isEqualTo("love - love");
+        sut = sut.serverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("fifteen - love");
+        sut = sut.serverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("thirty - love");
+        sut = sut.serverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("forty - love");
+        sut = sut.serverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("winner in");
     }
 
     @Test
-    void shouldAddPointOnLeftIfServerScores() {
-        assertScore(TennisGame.of(1, 0), "fifteen - love");
+    void receiverWinsEffortlessly() {
+        var sut = new TennisGame();
+        assertThat(sut.evaluateScore()).isEqualTo("love - love");
+        sut = sut.receiverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("love - fifteen");
+        sut = sut.receiverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("love - thirty");
+        sut = sut.receiverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("love - forty");
+        sut = sut.receiverScored();
+        assertThat(sut.evaluateScore()).isEqualTo("winner out");
     }
 
     @Test
-    void shouldAddPointOnRightIfReceiverScores() {
-        assertScore(TennisGame.of(0, 1), "love - fifteen");
+    void shouldGetDeuce() {
+        assertThat(instantiateGame(2, 3).serverScored().evaluateScore()).isEqualTo("deuce");
+        assertThat(instantiateGame(3, 2).receiverScored().evaluateScore()).isEqualTo("deuce");
+        assertThat(instantiateGame(38, 37).receiverScored().evaluateScore()).isEqualTo("deuce");
     }
 
     @Test
-    void shouldAddPointsIfBothScore() {
-        assertScore(TennisGame.of(1, 1), "fifteen - fifteen");
-    }
-
-    @Test
-    void shouldAddTwoPoints() {
-        assertScore(TennisGame.of(2, 0), "thirty - love");
-        assertScore(TennisGame.of(0, 2), "love - thirty");
-    }
-
-    @Test
-    void shouldAddThreePoints() {
-        assertScore(TennisGame.of(3, 0), "forty - love");
-        assertScore(TennisGame.of(0, 3), "love - forty");
+    void shouldGetAdvantage() {
+        assertThat(instantiateGame(3, 3).serverScored().evaluateScore()).isEqualTo("advantage in");
+        assertThat(instantiateGame(3, 3).receiverScored().evaluateScore()).isEqualTo("advantage out");
 
     }
 
-    @Test
-    void shouldCallDeuceIfBothPlayersHaveThreePoints() {
-        assertScore(TennisGame.of(3, 3), "deuce");
-    }
+    public static TennisGame instantiateGame(int serverScore, int receiverScore) {
+        var tennisGame = new TennisGame();
+        while(serverScore > 0 || receiverScore > 0){
+            if(serverScore > 0){
+                tennisGame = tennisGame.serverScored();
+                serverScore--;
+            }
+            if(receiverScore > 0){
+                tennisGame = tennisGame.receiverScored();
+                receiverScore--;
+            }
+        }
+        return tennisGame;
 
-    @Test
-    void shouldCallAdvantageInOnServerPointWhenInDeuce() {
-        assertScore(TennisGame.of(4, 3), "advantage in");
-        assertScore(TennisGame.of(5, 4), "advantage in");
-        assertScore(TennisGame.of(6, 5), "advantage in");
-    }
-
-    @Test
-    void shouldCallAdvantageOutOnReceiverPointWhenInDeuce() {
-        assertScore(TennisGame.of(3, 4), "advantage out");
-        assertScore(TennisGame.of(4, 5), "advantage out");
-        assertScore(TennisGame.of(5, 6), "advantage out");
-    }
-
-    @Test
-    void shouldCallWinnerOnServerIfScoreIsFourAndTwoPointsAheadOfReceiver() {
-        assertScore(TennisGame.of(4, 0), "winner in");
-        assertScore(TennisGame.of(5, 3), "winner in");
-        assertScore(TennisGame.of(6, 4), "winner in");
-    }
-
-    @Test
-    void shouldCallWinnerOnReceiverIfScoreIsFourAndTwoPointsAheadOfServer() {
-        assertScore(TennisGame.of(0, 4), "winner out");
-        assertScore(TennisGame.of(3, 5), "winner out");
-        assertScore(TennisGame.of(4, 6), "winner out");
-    }
-
-    private void assertScore(TennisGame sut, String expected) {
-        assertThat(sut.evaluateScore()).isEqualTo(expected);
     }
 }

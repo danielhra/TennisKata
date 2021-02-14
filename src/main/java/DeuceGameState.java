@@ -1,24 +1,16 @@
 public class DeuceGameState implements GameState {
-    private final TennisGame tennisGame;
-
-    public DeuceGameState(TennisGame tennisGame) {
-        this.tennisGame = tennisGame;
+    @Override
+    public void serverScores(TennisGame tennisGame) {
+        tennisGame.setState(new AdvantageGameState());
     }
 
     @Override
-    public GameState serverScores() {
-        var updatedGame = tennisGame.serverScored();
-        return new AdvantageGameState(updatedGame);
+    public void receiverScores(TennisGame tennisGame) {
+        tennisGame.setState(new AdvantageGameState());
     }
 
     @Override
-    public GameState receiverScores() {
-        var updatedGame = tennisGame.receiverScored();
-        return new AdvantageGameState(updatedGame);
-    }
-
-    @Override
-    public String formatScore() {
+    public String formatScore(TennisGame tennisGame) {
         return "deuce";
     }
 }

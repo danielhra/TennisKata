@@ -1,45 +1,38 @@
 public class SimpleGameState implements GameState {
 
-    private final TennisGame tennisGame;
+    @Override
+    public void serverScores(TennisGame tennisGame) {
+        selectNextState(tennisGame);
+    }
 
-    public SimpleGameState(TennisGame tennisGame) {
-        this.tennisGame = tennisGame;
+    private void selectNextState(TennisGame tennisGame) {
+        if (isDeuce(tennisGame)) {
+            tennisGame.setState(new DeuceGameState());
+        } else if (hasWon(tennisGame.getServerScore())) {
+            tennisGame.setState(new WinnerGameState());
+        }
     }
 
     @Override
-    public GameState serverScores() {
-        TennisGame updatedGame = tennisGame.serverScored();
-        return getGameState(updatedGame, updatedGame.getServerScore());
-    }
-
-    @Override
-    public GameState receiverScores() {
-        TennisGame updatedGame = tennisGame.receiverScored();
-        return getGameState(updatedGame, updatedGame.getReceiverScore());
-    }
-
-    private GameState getGameState(TennisGame updatedGame, int score) {
-        if (isDeuce(updatedGame)) {
-            return new DeuceGameState(updatedGame);
+    public void receiverScores(TennisGame tennisGame) {
+        if (isDeuce(tennisGame)) {
+            tennisGame.setState(new DeuceGameState());
+        } else if (hasWon(tennisGame.getReceiverScore())) {
+            tennisGame.setState(new WinnerGameState());
         }
-
-        if (hasWon(score)) {
-            return new WinnerGameState(updatedGame);
-        }
-        return this;
     }
 
     private boolean hasWon(int serverScore) {
         return serverScore >= 4;
     }
 
-    private boolean isDeuce(TennisGame updatedGame) {
-        return updatedGame.getServerScore() == 3 && updatedGame.getReceiverScore() == 3;
+    private boolean isDeuce(TennisGame tennisGame) {
+        return tennisGame.getServerScore() == 3 && tennisGame.getReceiverScore() == 3;
     }
 
 
     @Override
-    public String formatScore() {
+    public String formatScore(TennisGame tennisGame) {
         return transformToFormat(tennisGame.getServerScore()) + " - " + transformToFormat(tennisGame.getReceiverScore());
     }
 
