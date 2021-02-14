@@ -56,4 +56,20 @@ public class TennisGame {
                 throw new IllegalStateException();
         }
     }
+
+    public TennisGame serverScored() {
+        return new TennisGame(serverScore + 1, receiverScore);
+    }
+
+    public TennisGame receiverScored() {
+        return new TennisGame(serverScore, receiverScore + 1);
+    }
+
+    public int getServerScore() {
+        return serverScore;
+    }
+
+    public int getReceiverScore() {
+        return receiverScore;
+    }
 }

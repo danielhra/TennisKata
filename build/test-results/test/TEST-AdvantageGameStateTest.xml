@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AdvantageGameStateTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-02-14T14:37:50" hostname="macbook-de-Daniel.local" time="0.06">
+  <properties/>
+  <testcase name="shouldChangeStateToWinnerIfServerWasAheadAndServerScored()" classname="AdvantageGameStateTest" time="0.052"/>
+  <testcase name="shouldChangeStateToDeuceIfServerWasAheadAndReceiverScored()" classname="AdvantageGameStateTest" time="0.001"/>
+  <testcase name="shouldChangeStateToWinnerIfReceiverWasAheadAndReceiverScored()" classname="AdvantageGameStateTest" time="0.001"/>
+  <testcase name="shouldChangeStateToDeuceIfReceiverWasAheadAndServerScored()" classname="AdvantageGameStateTest" time="0.001"/>
+  <testcase name="shouldFormatTextToAdvantageOutWhenReceiverIsAhead()" classname="AdvantageGameStateTest" time="0.001"/>
+  <testcase name="shouldFormatTextToAdvantageInWhenServerIsAhead()" classname="AdvantageGameStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

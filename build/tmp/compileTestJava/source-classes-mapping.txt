@@ -1,2 +1,10 @@
+WinnerGameStateTest.java
+ WinnerGameStateTest
 TennisGameTest.java
  TennisGameTest
+AdvantageGameStateTest.java
+ AdvantageGameStateTest
+SimpleGameStateTest.java
+ SimpleGameStateTest
+DeuceGameStateTest.java
+ DeuceGameStateTest

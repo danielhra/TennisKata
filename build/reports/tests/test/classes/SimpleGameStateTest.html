@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - Class TennisGameTest</title>
+<title>Test results - Class SimpleGameStateTest</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>Class TennisGameTest</h1>
+<h1>Class SimpleGameStateTest</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/default-package.html">default-package</a> &gt; TennisGameTest</div>
+<a href="../packages/default-package.html">default-package</a> &gt; SimpleGameStateTest</div>
 <div id="summary">
 <table>
 <tr>
@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">11</div>
+<div class="counter">13</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.005s</div>
+<div class="counter">0.032s</div>
 <p>duration</p>
 </div>
 </td>
@@ -70,61 +70,85 @@
 <thead>
 <tr>
 <th>Test</th>
+<th>Method name</th>
 <th>Duration</th>
 <th>Result</th>
 </tr>
 </thead>
 <tr>
 <td class="success">shouldAddPointOnLeftIfServerScores()</td>
-<td class="success">0s</td>
+<td class="success">shouldAddPointOnLeftIfServerScores()</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldAddPointOnRightIfReceiverScores()</td>
-<td class="success">0s</td>
+<td class="success">shouldAddPointOnRightIfReceiverScores()</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldAddPointsIfBothScore()</td>
-<td class="success">0.001s</td>
+<td class="success">shouldAddPointsIfBothScore()</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldAddThreePoints()</td>
-<td class="success">0s</td>
+<td class="success">shouldAddThreePoints()</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldAddTwoPoints()</td>
-<td class="success">0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">shouldCallAdvantageInOnServerPointWhenInDeuce()</td>
+<td class="success">shouldAddTwoPoints()</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">shouldCallAdvantageOutOnReceiverPointWhenInDeuce()</td>
+<td class="success">shouldChangeStateToDeuceOnReceiverScore()</td>
+<td class="success">shouldChangeStateToDeuceOnReceiverScore()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">shouldCallDeuceIfBothPlayersHaveThreePoints()</td>
+<td class="success">shouldChangeStateToDeuceOnServerScore()</td>
+<td class="success">shouldChangeStateToDeuceOnServerScore()</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">shouldCallWinnerOnReceiverIfScoreIsFourAndTwoPointsAheadOfServer()</td>
+<td class="success">shouldChangeToWinStateOnReceiverWin()</td>
+<td class="success">shouldChangeToWinStateOnReceiverWin()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldChangeToWinStateOnServerWin()</td>
+<td class="success">shouldChangeToWinStateOnServerWin()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[1] 0, 0</td>
+<td class="success">shouldNotChangeStateIfIsNotADeuce(int, int)[1]</td>
+<td class="success">0.017s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">[2] 1, 1</td>
+<td class="success">shouldNotChangeStateIfIsNotADeuce(int, int)[2]</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">shouldCallWinnerOnServerIfScoreIsFourAndTwoPointsAheadOfReceiver()</td>
+<td class="success">[3] 2, 2</td>
+<td class="success">shouldNotChangeStateIfIsNotADeuce(int, int)[3]</td>
 <td class="success">0s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">shouldStartGameWithZeroPoints()</td>
 <td class="success">shouldStartGameWithZeroPoints()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
